@@ -17,8 +17,10 @@ int main ()
 
     std::cout << "Exemple de point : " << P << std::endl;
     std::cout << "Exemple de point : " << points.at(2) << std::endl;
-
+    
     return 0;*/
+    
+    //plusProcheVoisin();
+    //formeCreuse();
     plusOuMoins();
-
 }

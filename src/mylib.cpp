@@ -11,25 +11,56 @@ int randomInt(int min, int max)
     return dis (gen);
 }
 
-void formeCreuse(int x, int y)
+void formeCreuse()
 {
+    int x = 0;
+    int y = 0;
+    char point = '*';
+    char space = ' ';
 
+    std::cout <<"Veuillez indiquer le nombre de lignes à afficher : "<<std::endl;
+    std::cin >> x;
+    std::cout <<"Veuillez indiquer le nombre de colones à afficher : "<<std::endl;
+    std::cin >> y;
+
+    for (int i = 0; i < x; ++i) {
+        for (int j = 0; j < y; ++j) {
+            if (i == 0 || i == x-1){
+                std::cout << point;
+            } else if (j == 0 || j == y-1){
+                std::cout << point;
+            } else{
+                std::cout << space;
+            }
+        }
+        std::cout << std::endl;
+    }
 }
 
 float distanceManhattan(Point2D p1, Point2D p2)
 {
-    return 0.0f;
+    return abs(p2.x-p1.x) + abs(p2.y-p1.y);
 }
 
 
 float distanceEuclidienne(Point2D p1, Point2D p2)
 {
-    return 0.0f;
+    return std::sqrt(std::pow(p2.x-p1.x, 2) + std::pow(p2.y-p1.y, 2));
 }
 
 void plusProcheVoisin(std::vector<Point2D> points, Point2D P, int dist)
 {
-
+    if (points.empty()) return;
+    int nbPoints = (int)points.size();
+    int randPoints = randomInt(0, nbPoints-1);
+    P = points.at(randPoints);
+    for(int i = 0; i < nbPoints; i++)
+    {
+        if(distanceEuclidienne(points.at(i), P)<= dist)
+        {
+            std::cout << points.at(i) << std::endl;
+        }
+    }
 }
 
 void plusOuMoins()
@@ -71,5 +102,5 @@ void plusOuMoins()
             break;
             }
         }
-    }
+    }   
 }
