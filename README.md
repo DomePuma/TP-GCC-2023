@@ -17,12 +17,31 @@
     $ cmake --version # vérifier que cmake est bien installé
     ```
 
-Vous trouverez dans le dépôt un `CmakeLists.txt` le plus basique qu'il soit mais efficace ainsi qu'un script `build.sh` utilisable comme suit :
-* `./build.sh -a` : Configurer puis construire le projet
-* `./build.sh -m` : Uniquement construire le projet (nécessite d'avoir été configuré avec la commande `-a` une première fois)
-* `./build.sh -r` : Permet d'executer le projet (nécessite d'avoir été configuré `-a` et/ou construit `-m`)
+Vous trouverez dans le dépôt un `CmakeLists.txt` le plus basique qu'il soit mais efficace ainsi qu'un script `build.sh` pour WSL ou `build.bat` pour Windows utilisables comme suit :
+* `./build.sh -a` ou `.\build.bat -a` : Configurer puis construire le projet
+* `./build.sh -m` ou `./build.bat -m` : Uniquement construire le projet (nécessite d'avoir été configuré avec la commande `-a` une première fois)
+* `./build.sh -r` ou `./build.bat -r` : Permet d'executer le projet (nécessite d'avoir été configuré `-a` et/ou construit `-m`)
 
-> **Attention**: Assurez-vous d'avoir les droits d'exécution sur le script `build.sh`. Pour ce faire, exécutez la commande `chmod 755 ./build.sh`.
+Vous avez la possibilité de passer des arguments au programme après l'option `-r`. Par exemple :
+```bash
+$ ./build.sh -r 2
+```
+
+Cette commande permettra d'executer le programme `tp` et de lui envoyer l'argument `2` comme si nous avions fait `./tp 2` dans le prompt.
+On pourra alors récupérer l'argument à l'aide du paramètre `char** argv` de la méthode `main` en faisant comme suit :
+```cpp
+int main (int argc, char** argv)
+{
+    int n(0);
+    // On ne récupère qu'un seul argument ici
+    if(argc > 1 && argc < 3)
+    {
+        n = std::stoi(argv[1]);
+    }
+}
+```
+
+> **Attention**: Assurez-vous d'avoir les droits d'exécution sur le script `build.sh` si vous l'utilisez sur un prompt bash/zsh. Pour ce faire, exécutez la commande `chmod 755 ./build.sh`.
 
 
 ## Consignes

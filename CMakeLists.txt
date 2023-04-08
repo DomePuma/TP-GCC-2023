@@ -8,7 +8,12 @@ project(    tp
 message("# Build configuration for ${CMAKE_PROJECT_NAME} with CMake ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}")
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -std=c++${CMAKE_CXX_STANDARD}")
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Wall /std:c++${CMAKE_CXX_STANDARD}")
+else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -std=c++${CMAKE_CXX_STANDARD}")
+endif()
+
 
 message(STATUS "CXX Options : ${CMAKE_CXX_FLAGS}")
 
