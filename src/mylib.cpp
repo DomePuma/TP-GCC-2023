@@ -38,35 +38,38 @@ void plusOuMoins()
     int timeTried = 0;
     gameNum = randomInt(1, 100);
     numOfTry = randomInt(5, 15);
-    do
+    for(int i = 0; i < numOfTry; i++)
     {
         std::cout<<"Entrez un nombre entre 1 et 100"<<std::endl;
         std::cin>> playerNum;
-        numOfTry--;
         timeTried++;
-        if(playerNum > gameNum)
-        {
-            std::cout<<"Trop grand, il te reste "<< numOfTry <<" essais"<<std::endl;
-        }
-        if(playerNum < gameNum)
-        {
-            std::cout<<"Trop petit, il te reste "<< numOfTry <<" essais"<<std::endl;
-        }
         if (playerNum < 1 || playerNum > 100 )
         {
-            numOfTry++;
-            std::cout<<"T'es trop con pour écouter la seule règle ? T'inquitèe celui là je te le compte pas, il te reste toujours "<<numOfTry<<" essais"<<std::endl;
-        }
-        if(playerNum == gameNum)
+            i--;
+            timeTried--;
+            std::cout<<"T'es trop con pour écouter la seule règle ? T'inquitèe celui là je te le compte pas, il te reste toujours "<<numOfTry - i<<" essais"<<std::endl;
+        }       
+        else
         {
+            if(playerNum > gameNum)
+            {
+            std::cout<<"Trop grand, il te reste "<< numOfTry - i <<" essais"<<std::endl;
+            }
+            if(playerNum < gameNum)
+            {
+            std::cout<<"Trop petit, il te reste "<< numOfTry - i <<" essais"<<std::endl;
+            }
+        
+            if(playerNum == gameNum)
+            {
             std::cout<<"Bonne réponse, il t'a fallu "<<timeTried<<" essais"<<std::endl;
             break;
-        }
-        if(numOfTry < 1)
-        {
+            }
+            if(numOfTry < 1)
+            {
             std::cout<<"Plus d'essais force à toi l'ami, t'as perdu"<<std::endl;
             break;
+            }
         }
-    }while (gameNum != playerNum);
-
+    }
 }
